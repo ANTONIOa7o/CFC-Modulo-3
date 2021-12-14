@@ -1,0 +1,45 @@
+
+<!--
+  Tipos de Data Binding en Angular:
+  1º StringInterpolation- {{}}TypeScript=> HTML: Tener información (Variable, Array, por ejemplo) y 
+  presentarla a los usuarios en modo de HTML.
+  2º PropertyBinding- []TypeScript<= HTML: Información del lado de HTML que puede ser por ejemplo, información que el usuario ingrese o que nosotros pongamos un valor por defecto. Viajando la información de HTML a TypeScript.
+  3º EventBinding- ()TypeScript<= HTML: Escuchar eventos desde HTML y pasarlo a TypeScript.
+  4º Two Way Data Binding[()]TypeScript<=> HTML: Comunicación de dos Vías. De lo que el cliente ve a 
+  TypeScriptcomo de TypeScripthacia lo que el cliente ve
+-->
+
+<h1>Ejemplos Binding</h1>
+
+<h2>String interpolation </h2>
+{{title}} <br/>
+{{nombre + " " + apellido}} <br/>
+{{3 + 7 - 2}} <br/>
+
+<h2>Property binding</h2>
+<button [disabled]="habilitado"> Pulsame </button>
+
+<h2>Event binding</h2>
+<button (click)="saludar()"> Saludar </button>
+
+<h2>Two way data binding</h2>
+<!--
+  La directiva ng-model asegurará que los datos en la “vista” y los de su “modelo” 
+  se mantengan sincronizados todo el tiempo. Lo que esta directiva hace es guardar el valor que tenga 
+  la propiedad nombre y actualizar dicha propiedad si el usuario la cambia desde el input.
+   Por definicion se genera two way data binding.
+-->
+<input type="text" placeholder="escribe tu nombre" [(ngModel)]='nombre' />
+Tu nombre es {{nombre}} <br/>
+
+<h2>Ejercicio</h2>
+<!-- 
+  Utilizando los tipos de binding vistos:
+  1.- Crear una seccion div que al estar el raton encima se muestre 
+      de color verde y rojo al salir de la seccion
+  2.- Aplicar los estilos declarados en css con [class]. p.e. [class]='rojo'
+  3.- Mostrar el color como texto debajo del div
+ -->
+ <div (mouseover)='this.estilo="verde"' 
+  (mouseout)='this.estilo="rojo"' [class]='estilo'></div>
+ El color mostrado es {{estilo}}
