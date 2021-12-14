@@ -1,0 +1,33 @@
+<h1>Ejemplo de navegacion con Router</h1>
+<!--
+Para implementar navegación en SPA’s (Single Page Application)la mejor forma de hacerlo es usando e routerLink
+que nos provee Angular ya que así reducimos los tiempos de carga y aprovechamos al máximo las capacidades del
+framework. href-> enlace tradicional, con redirección, si se hace click te lleva a otra página 
+(como si fuera otra distinta), recargando todo, no recomendable para una SPA.
+-->
+
+
+<h2>Barra de navegacion</h2>
+<!--etiqueta de Angular:  <a routerLink="/" routerLinkActive="active">Link</a> El route nos permite resaltar 
+     el link
+     que se encuentra activo. Se suele usar routerLinkActive="cualquier clase", le puede indicar a angular
+     la clase que hace que se resalte el link que están visitando, para este caso bootstrap usa la clase 
+     active-->
+<a [routerLink]="['/c1']" routerLinkActive="active">Componente 1</a> | 
+<a routerLink='c2' routerLinkActive="active">Componente 2</a> | 
+<!--Parámetros tipo Query Son parámetros opcionales que declaro en el enlace con
+     la directiva queryParams.-->
+<a routerLink='c3/hotel_Riu' 
+[queryParams]="{entrada:'26/3/2021',salida:'27/3/2021',personas:2}" 
+routerLinkActive="active">Componente 3</a>
+
+<!--router-outlet es una etiqueta especial en Angular que sirve para mostrar los componentes hijos
+ de un componente. Por defecto todos los componentes son hijos del componente AppComponent,
+por lo que si incluímos esta etiqueta dentro de la vista de AppComponent, se renderizará cada
+uno de los componentes del routing dependiendo de la página en la que nos encontremos.
+e.d:
+routerLink-> mantiene el index.html y usando esta etiqueta<router-outlet></router-outlet> quita y pone el componente
+ al que hace referencia, mostrándolo en esa parte del index.html.
+
+-->
+<router-outlet></router-outlet>
