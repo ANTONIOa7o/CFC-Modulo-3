@@ -1,0 +1,163 @@
+
+<!--
+  Directivas son una forma elegante y rápida de manipular la información, contamos con 3 tipos de directivas:
+
+  I] COMPONENTES: Son directivas que siempre tienen asignados templates de HTML.
+  II] ESTRUCTURALES: Nos permiten modificar el DOM, es decir manipular elementos de HTML.
+  III] ATRIBUTOS: A estas directivas les indicamos a través de HTML cómo se deben comportar de acuerdo con 
+  ciertas condiciones que definimos.
+-->
+
+<!--
+  Se trata de una directiva estructural que permite realizar repeticiones sobre un código HTML
+   tomando como valores de la iteración los pertenecientes a una colección de datos. aquel lugar donde se 
+   aplique la directiva, 
+  será tantas veces repetido como elementos tenga la colección indicada.
+  ,e.d: Nos permite iterar/reiterar sobre una colección y generar elementos HTML repetidos a partir del recorrido de datos.
+-->
+<h2>Directiva ngFor - Todos los alumnos</h2>
+<ul>
+  <li *ngFor="let alum of alumnos; index as i"><!--El índice del elemento actual en el iterable
+    ngFor con index in angular se usa aquí para generar el elemento 'li' hasta la longitud del
+    array alumnos.-->
+    {{i+1}}.- {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ul>
+
+<!-- Ejercicio: mostrar todos los alumnos en una tabla -->
+<h2>Directiva ngFor - Todos los alumnos en tabla</h2>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Nota</th>
+  </tr>
+  <tr *ngFor="let alum of alumnos">
+    <td>{{alum.nombre}}</td>
+    <td>{{alum.apellido}}</td>
+    <td>{{alum.nota}}</td>
+  </tr>
+</table>
+
+<!--
+  *ngIfes una directiva estructural; Èsta muestra u oculta el contenido de una etiqueta HTML cuando el resultado 
+  de la expresión a la que está igualada da como resultado verdadero o falso respectivamente. La igualdad puede ser o bien a un código JS o a una función del archivo typeScript lineado a la template.
+   , e.d: nos permite mostrar elementos de HTML de acuerdo a una condición que definamos y
+   condicionar si dicha marca debe agregarse o no a la página HTML
+-->
+<h2>Directiva ngIf - Solo alumnos repetidores</h2>
+<ul>
+  <ng-container *ngFor="let alum of alumnos">
+    <li  *ngIf="alum.repetidor">
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+    </li>
+  </ng-container>
+</ul>
+
+<!-- Mostrar los NO repetidores -->
+<h2>Directiva ngIf - Solo alumnos NO repestidores</h2>
+<ul>
+  <ng-container *ngFor="let alum of alumnos">
+    <li  *ngIf="!alum.repetidor">
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+    </li>
+  </ng-container>
+</ul>
+
+<!-- Ejercicio a) Mostrar solo los aprobados nota>=5 -->
+<h2>Directiva ngIf - Solo alumnos aprobados</h2>
+<ul>
+  <ng-container *ngFor="let alum of alumnos">
+    <li  *ngIf="alum.nota >= 5">
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+    </li>
+  </ng-container>
+</ul>
+
+<!--ejercicio b) Mostrar solo los repetidores que esten suspendidos -->
+<h2>Directiva ngIf - Solo alumnos repetidores y suspendidos</h2>
+<ul>
+  <ng-container *ngFor="let alum of alumnos">
+    <li  *ngIf="alum.repetidor && alum.nota < 5">
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+    </li>
+  </ng-container>
+</ul>
+
+<!--
+  Directiva ngStyle Es una directiva de atributo por eso va entre corchetes.
+  Se utiliza para aplicar un estilo CSS en función de una condición:
+-->
+<h2>Directiva ngStyle - Verde los aprobados y rojo los suspensos</h2>
+<ol>
+  <li *ngFor="let alum of alumnos"
+      [ngStyle]="{color: alum.nota >= 5 ? '#008800' : 'rgba(255,0,0,1)'}">
+    {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ol>
+
+<!-- Ejercicio: mostrar en gris claro los repetidores y negro los demas -->
+<h2>Directiva ngStyle - gris claro los repetidores y negro los demas</h2>
+<ol>
+  <li *ngFor="let alum of alumnos"
+      [ngStyle]="{color: alum.repetidor ? '#BBBBBB' : '#000000'}">
+    {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ol>
+
+<!--
+  Directiva ngClass Es otra directiva de atributo.
+  Se utiliza para aplicar una clase de estilo definida en un fichero css.
+-->
+<h2>Directiva ngClass - Verde los aprobados y rojo los suspensos</h2>
+<ol>
+  <li *ngFor="let alum of alumnos"
+      [ngClass]='{verde: alum.nota >= 5, rojo: alum.nota < 5}'>
+      <!--La directiva [ngClass] en un contenedor, especifica atributos
+     con los que hacer coincidir-->
+    {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ol>
+
+<h2>Directiva ngClass - Operador ternario - Verde los aprobados y rojo los suspensos</h2>
+<ol>
+  <li *ngFor="let alum of alumnos"
+  [ngClass]="alum.nota >= 5 ? 'verde' : 'rojo'">
+  <!--[expresion: ? ]si la expresión es verdadera; verde de lo contrario, agregue rojo-->
+  {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ol>
+
+<!--Ejercicio2 Resaltar en negrita y cursiva los alumnos repetidores -->
+<h2>Directiva ngClass - Resaltar en negrita y cursiva los repetidores</h2>
+<ol>
+  <li *ngFor="let alum of alumnos"
+      [ngClass]="{resaltar: alum.repetidor}">
+    {{alum.nombre}} {{alum.apellido}}: {{alum.nota}}
+  </li>
+</ol>
+
+<!--
+  ngSwitch-> directiva de atributo
+  *ngSwitchCase-> directiva estructural
+-->
+<h2>Directivas ngSwitch y ngSwitchCase - Resaltar por valoracion</h2>
+<ol>
+  <!--La directiva [ngSwitch] en un contenedor, especifica una expresión
+     con la que hacer coincidir-->
+  <li *ngFor="let alum of alumnos" [ngSwitch]="alum.valoracion">
+    <!-- *ngSwitchCas; Si varias expresiones coincidentes coinciden con el valor
+    de expresión de cambio, se muestran todas ellas.-->
+
+    <div *ngSwitchCase="'alta'" [ngStyle]="{backgroundColor: '#080'}"> 
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}} 
+    </div>
+    <div *ngSwitchCase="'media'" [ngStyle]="{backgroundColor: '#FA0'}"> 
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}} 
+    </div>
+    <div *ngSwitchCase="'baja'" [ngStyle]="{backgroundColor: '#F00'}"> 
+      {{alum.nombre}} {{alum.apellido}}: {{alum.nota}} 
+    </div>
+
+  </li>
+</ol>

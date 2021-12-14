@@ -1,0 +1,19 @@
+table, tr,td,th{
+    border: thin solid blue;
+    border-collapse: collapse;
+}
+
+.verde{
+    color: green;
+}
+
+.rojo{
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.resaltar{
+    font-weight: bold;
+    font-style: italic;
+}
