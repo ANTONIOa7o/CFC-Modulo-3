@@ -1,0 +1,33 @@
+<div class="container">
+  <header class="gradiente1">
+    <img src="../assets/bandera2.jpg" />
+    <h1>{{"app.titulo" | translate}}</h1>
+    <span>
+      <a (click)="cambiarIdioma('es')">
+        <img src="../assets/banderas/spain.png" />
+      </a>
+      <a (click)="cambiarIdioma('en')">
+        <img src="../assets/banderas/england.png" />
+      </a>
+      <a (click)="cambiarIdioma('fr')">
+        <img src="../assets/banderas/france.png" />
+      </a>
+      <a (click)="cambiarIdioma('de')">
+        <img src="../assets/banderas/germany.png" />
+      </a>
+    </span>
+  </header>
+  
+  <app-navbar></app-navbar>
+  
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+  
+  <blockquote class="blockquote text-right">    
+    <footer>
+      
+      Página realizada por <cite title="Source Title">Toño</cite>
+    </footer>
+  </blockquote>
+</div>
